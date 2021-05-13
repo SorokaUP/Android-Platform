@@ -42,49 +42,7 @@ public class MainActivity extends AppCompatActivity {
 
     public void btnClick(View v)
     {
-        // выводим сообщение
-        //Toast.makeText(this, ((Button)v).getText(), Toast.LENGTH_SHORT).show();
-
         Button btn = (Button)v;
-        String val = btn.getText().toString();
-
-        /*switch (v.getId())
-        {
-            case R.id.btnC:
-                data.clearAll();
-                break;
-
-            case R.id.btnCe:
-                data.clearValCurrStr();
-                break;
-
-            case R.id.btnDel:
-                data.deleteValCurrStr();
-                break;
-
-            case R.id.btnDot:
-                // TODO: Доделать запятую
-                Toast.makeText(this, "Когда нибудь позже будет...", Toast.LENGTH_SHORT).show();
-                break;
-
-            case R.id.btnEqually:
-                //clearHis();
-                break;
-
-            case R.id.btnMinus:
-
-            case R.id.btnMultiply:
-
-            case R.id.btnPlus:
-
-            case R.id.btnSplit:
-                data.setLastOperation(val);
-                break;
-
-            default:
-                data.concatValCurrStr(val);
-                break;
-        }*/
 
         switch (v.getId())
         {
@@ -125,12 +83,9 @@ public class MainActivity extends AppCompatActivity {
                 break;
 
             default:
-                data.input(val.charAt(0));
+                data.input(btn.getText().toString().charAt(0));
                 break;
         }
-
-        //((TextView)findViewById(R.id.lbCurrentValue)).setText(data.getValCurrStr());
-        //((TextView)findViewById(R.id.lbHistory)).setText(data.getHis());
 
         ((TextView)findViewById(R.id.lbCurrentValue)).setText(data.getCurValue());
         ((TextView)findViewById(R.id.lbHistory)).setText(data.getHis());
