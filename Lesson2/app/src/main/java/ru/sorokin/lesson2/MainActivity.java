@@ -1,5 +1,6 @@
 package ru.sorokin.lesson2;
 
+import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 
 import android.os.Bundle;
@@ -10,7 +11,8 @@ import android.widget.Toast;
 
 public class MainActivity extends AppCompatActivity {
 
-    Core data;
+    private static final String DATA_PARAM = "CoreData";
+    private Core data;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -37,7 +39,7 @@ public class MainActivity extends AppCompatActivity {
         ((Button)findViewById(R.id.btnMultiply)).setOnClickListener(this::btnClick);
         ((Button)findViewById(R.id.btnEqually)).setOnClickListener(this::btnClick);
 
-        data = new Core();
+        data = (savedInstanceState != null) ? (Core)savedInstanceState.getSerializable(DATA_PARAM) : new Core();
     }
 
     public void btnClick(View v)
@@ -89,5 +91,20 @@ public class MainActivity extends AppCompatActivity {
 
         ((TextView)findViewById(R.id.lbCurrentValue)).setText(data.getCurValue());
         ((TextView)findViewById(R.id.lbHistory)).setText(data.getHis());
+    }
+
+    @Override
+    protected void onSaveInstanceState(@NonNull Bundle outState) {
+        super.onSaveInstanceState(outState);
+        outState.putSerializable(DATA_PARAM, data);
+    }
+
+    @Override
+    protected void onRestoreInstanceState(@NonNull Bundle savedInstanceState) {
+        super.onRestoreInstanceState(savedInstanceState);
+        data = (Core)savedInstanceState.getSerializable(DATA_PARAM);
+
+        ((TextView)this.findViewById(R.id.lbHistory)).setText(data.getHis());
+        ((TextView)this.findViewById(R.id.lbCurrentValue)).setText(data.getCurValue());
     }
 }

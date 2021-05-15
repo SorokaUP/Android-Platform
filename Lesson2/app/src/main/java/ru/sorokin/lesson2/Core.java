@@ -1,6 +1,8 @@
 package ru.sorokin.lesson2;
 
-public class Core {
+import java.io.Serializable;
+
+public class Core implements Serializable {
     private float value;
     private String his;
     private char operation;
@@ -129,6 +131,9 @@ public class Core {
         String f = his;
         String a = "";
         char o = ' ';
+        char oldO = ' ';
+        boolean isFirst = true;
+        boolean isFirstBefore = true;
 
         do {
             a = "";
@@ -143,7 +148,7 @@ public class Core {
                 }
             }
 
-            f = f.substring(f.indexOf(o) + 1, f.length() - f.indexOf(o) + 1);
+            f = (o != '=') ? f.substring(f.indexOf(o) + 1) : "";
             x = Float.parseFloat(a);
 
             if (o == '=')
@@ -159,28 +164,55 @@ public class Core {
                 }
             }
 
-            switch (o)
+            if (isFirst)
             {
-                case '+':
-                    value += x;
-                    break;
-
-                case '-':
-                    value -= x;
-                    break;
-
-                case '*':
-                    value *= x;
-                    break;
-
-                case '/':
-                    value /= x;
-                    break;
+                value = x;
+                oldO = o;
             }
+            else
+            {
+                if (o != '=')
+                {
+                    char tempO = o;
+                    o = oldO;
+                    oldO = tempO;
+                }
+
+                switch (o)
+                {
+                    case '+':
+                        value += x;
+                        break;
+
+                    case '-':
+                        value -= x;
+                        break;
+
+                    case '*':
+                        value *= x;
+                        break;
+
+                    case '/':
+                        value /= x;
+                        break;
+                }
+            }
+
+            isFirst = false;
         }
         while (f.length() > 0);
 
         curValue = String.valueOf(value);
         clearHis();
+    }
+
+    private String helperSubstring(String s, char c) {
+        if (c == '=')
+            return "";
+
+        int start = s.indexOf(c) + 1;
+
+        String res = s.substring(start);
+        return res;
     }
 }
