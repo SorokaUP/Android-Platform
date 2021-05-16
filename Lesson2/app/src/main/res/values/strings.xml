@@ -1,5 +1,5 @@
 <resources>
-    <string name="app_name">Lesson 2</string>
+    <string name="app_name">SvsCalc</string>
     <integer name="btn_size">100</integer>
     <integer name="btn_size_large">200</integer>
 </resources>
