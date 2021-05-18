@@ -10,10 +10,19 @@ public class Core implements Serializable {
     private String curValue;
     private boolean isNewValue;
 
+    public final char PLUS = '+';
+    public final char MINUS = '-';
+    public final char MULTIPLY = '*';
+    public final char SPLIT = '/';
+    public final char DOT = ',';
+    public final char CALCULATE = '=';
+
+    public final char EMPTY = 'X';
+
     public Core()
     {
         his = "";
-        operation = 'X';
+        operation = EMPTY;
         //oldValue = "";
         curValue = "0";
         isNewValue = false;
@@ -32,29 +41,29 @@ public class Core implements Serializable {
         {
             switch (x)
             {
-                case '+':
+                case PLUS:
                     setOperation(x);
                     break;
 
-                case '-':
+                case MINUS:
                     setOperation(x);
                     break;
 
-                case '*':
+                case MULTIPLY:
                     setOperation(x);
                     break;
 
-                case '/':
+                case SPLIT:
                     setOperation(x);
                     break;
 
-                case ',':
+                case DOT:
                     // TODO: Доделать как нибудь...
                     break;
 
-                case '=':
+                case CALCULATE:
                     setOperation(x);
-                    go();
+                    calculation();
                     break;
             }
         }
@@ -74,7 +83,7 @@ public class Core implements Serializable {
         clearHis();
         clearCurrent();
         value = 0f;
-        operation = 'X';
+        operation = EMPTY;
     }
 
     private void setCurValue(char x, boolean isAdd) {
@@ -88,10 +97,12 @@ public class Core implements Serializable {
                 curValue = String.valueOf(x);
                 return;
             }
-            curValue = (curValue == "0") ? String.valueOf(x) : curValue + x;
+            curValue = (curValue.equals("0")) ? String.valueOf(x) : curValue + x;
         }
         else
+        {
             curValue = (curValue.length() > 1) ? curValue.substring(0, curValue.length()-1) : "0";
+        }
     }
 
     private void setOperation(char x) {
@@ -126,93 +137,96 @@ public class Core implements Serializable {
         return curValue;
     }
 
-    private void go() {
+    private void calculation() {
         float x = 0f;
-        String f = his;
-        String a = "";
-        char o = ' ';
-        char oldO = ' ';
+        String formula = his;
+        String curParam = "";
+        char curOperation = EMPTY;
+        char oldOperation = EMPTY;
         boolean isFirst = true;
-        boolean isFirstBefore = true;
 
         do {
-            a = "";
-            o = ' ';
+            curParam = "";
+            curOperation = EMPTY;
 
-            for (char c : f.toCharArray()) {
+            for (char c : formula.toCharArray()) {
                 if (Character.isDigit(c))
-                    a += c;
+                    curParam += c;
                 else {
-                    o = c;
+                    curOperation = c;
                     break;
                 }
             }
 
-            f = (o != '=') ? f.substring(f.indexOf(o) + 1) : "";
-            x = Float.parseFloat(a);
+            formula = helperFormulaChange(formula, curOperation);
+            x = Float.parseFloat(curParam);
 
-            if (o == '=')
+            if (curOperation == CALCULATE)
             {
-                for (int i = his.length()-1; i >= 0; i--) {
-                    if (his.charAt(i) == '=' || Character.isDigit(his.charAt(i)))
-                        continue;
-                    else
-                    {
-                        o = his.charAt(i);
-                        break;
-                    }
-                }
+                curOperation = helperGetLastOperation();
             }
 
             if (isFirst)
             {
                 value = x;
-                oldO = o;
+                oldOperation = curOperation;
+                isFirst = false;
             }
             else
             {
-                if (o != '=')
-                {
-                    char tempO = o;
-                    o = oldO;
-                    oldO = tempO;
-                }
-
-                switch (o)
-                {
-                    case '+':
-                        value += x;
-                        break;
-
-                    case '-':
-                        value -= x;
-                        break;
-
-                    case '*':
-                        value *= x;
-                        break;
-
-                    case '/':
-                        value /= x;
-                        break;
-                }
+                oldOperation = calculationProcess(x, oldOperation, curOperation);
             }
-
-            isFirst = false;
         }
-        while (f.length() > 0);
+        while (formula.length() > 0);
 
         curValue = String.valueOf(value);
         clearHis();
     }
 
-    private String helperSubstring(String s, char c) {
-        if (c == '=')
-            return "";
+    private String helperFormulaChange(String formula, char curOperation) {
+        return (curOperation != CALCULATE) ? formula.substring(formula.indexOf(curOperation) + 1) : "";
+    }
 
-        int start = s.indexOf(c) + 1;
+    private char helperGetLastOperation() {
+        for (int i = his.length()-1; i >= 0; i--) {
+            if (his.charAt(i) == CALCULATE || Character.isDigit(his.charAt(i)))
+                continue;
+            else
+            {
+                return his.charAt(i);
+            }
+        }
 
-        String res = s.substring(start);
-        return res;
+        return EMPTY;
+    }
+
+    private char calculationProcess(float x, char oldOperation, char curOperation) {
+        if (curOperation != CALCULATE)
+        {
+            char tempO = curOperation;
+            curOperation = oldOperation;
+            oldOperation = tempO;
+        }
+
+        switch (curOperation)
+        {
+            case PLUS:
+                value += x;
+                break;
+
+            case MINUS:
+                value -= x;
+                break;
+
+            case MULTIPLY:
+                value *= x;
+                break;
+
+            case SPLIT:
+                value /= x;
+                break;
+        }
+
+        return oldOperation;
     }
 }

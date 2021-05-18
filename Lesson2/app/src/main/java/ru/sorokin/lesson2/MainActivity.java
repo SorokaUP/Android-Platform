@@ -9,6 +9,8 @@ import android.widget.Button;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import java.util.Dictionary;
+
 public class MainActivity extends AppCompatActivity {
 
     private static final String DATA_PARAM = "CoreData";
@@ -19,27 +21,31 @@ public class MainActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
 
-        ((Button)findViewById(R.id.btn0)).setOnClickListener(this::btnClick);
-        ((Button)findViewById(R.id.btn1)).setOnClickListener(this::btnClick);
-        ((Button)findViewById(R.id.btn2)).setOnClickListener(this::btnClick);
-        ((Button)findViewById(R.id.btn3)).setOnClickListener(this::btnClick);
-        ((Button)findViewById(R.id.btn4)).setOnClickListener(this::btnClick);
-        ((Button)findViewById(R.id.btn5)).setOnClickListener(this::btnClick);
-        ((Button)findViewById(R.id.btn6)).setOnClickListener(this::btnClick);
-        ((Button)findViewById(R.id.btn7)).setOnClickListener(this::btnClick);
-        ((Button)findViewById(R.id.btn8)).setOnClickListener(this::btnClick);
-        ((Button)findViewById(R.id.btn9)).setOnClickListener(this::btnClick);
-        ((Button)findViewById(R.id.btnC)).setOnClickListener(this::btnClick);
-        ((Button)findViewById(R.id.btnCe)).setOnClickListener(this::btnClick);
-        ((Button)findViewById(R.id.btnDel)).setOnClickListener(this::btnClick);
-        ((Button)findViewById(R.id.btnDot)).setOnClickListener(this::btnClick);
-        ((Button)findViewById(R.id.btnMinus)).setOnClickListener(this::btnClick);
-        ((Button)findViewById(R.id.btnPlus)).setOnClickListener(this::btnClick);
-        ((Button)findViewById(R.id.btnSplit)).setOnClickListener(this::btnClick);
-        ((Button)findViewById(R.id.btnMultiply)).setOnClickListener(this::btnClick);
-        ((Button)findViewById(R.id.btnEqually)).setOnClickListener(this::btnClick);
+        buttonSetOnClick(R.id.btn0);
+        buttonSetOnClick(R.id.btn1);
+        buttonSetOnClick(R.id.btn2);
+        buttonSetOnClick(R.id.btn3);
+        buttonSetOnClick(R.id.btn4);
+        buttonSetOnClick(R.id.btn5);
+        buttonSetOnClick(R.id.btn6);
+        buttonSetOnClick(R.id.btn7);
+        buttonSetOnClick(R.id.btn8);
+        buttonSetOnClick(R.id.btn9);
+        buttonSetOnClick(R.id.btnC);
+        buttonSetOnClick(R.id.btnCe);
+        buttonSetOnClick(R.id.btnDel);
+        buttonSetOnClick(R.id.btnDot);
+        buttonSetOnClick(R.id.btnMinus);
+        buttonSetOnClick(R.id.btnPlus);
+        buttonSetOnClick(R.id.btnSplit);
+        buttonSetOnClick(R.id.btnMultiply);
+        buttonSetOnClick(R.id.btnEqually);
 
         data = (savedInstanceState != null) ? (Core)savedInstanceState.getSerializable(DATA_PARAM) : new Core();
+    }
+
+    private void buttonSetOnClick(int id) {
+        ((Button) findViewById(id)).setOnClickListener(this::btnClick);
     }
 
     public void btnClick(View v)
@@ -89,8 +95,7 @@ public class MainActivity extends AppCompatActivity {
                 break;
         }
 
-        ((TextView)findViewById(R.id.lbCurrentValue)).setText(data.getCurValue());
-        ((TextView)findViewById(R.id.lbHistory)).setText(data.getHis());
+        showData(data.getHis(), data.getCurValue());
     }
 
     @Override
@@ -102,9 +107,13 @@ public class MainActivity extends AppCompatActivity {
     @Override
     protected void onRestoreInstanceState(@NonNull Bundle savedInstanceState) {
         super.onRestoreInstanceState(savedInstanceState);
-        data = (Core)savedInstanceState.getSerializable(DATA_PARAM);
+        data = (Core) savedInstanceState.getSerializable(DATA_PARAM);
 
-        ((TextView)this.findViewById(R.id.lbHistory)).setText(data.getHis());
-        ((TextView)this.findViewById(R.id.lbCurrentValue)).setText(data.getCurValue());
+        showData(data.getHis(), data.getCurValue());
+    }
+
+    private void showData(String his, String curValue) {
+        ((TextView) this.findViewById(R.id.lbHistory)).setText(his);
+        ((TextView) this.findViewById(R.id.lbCurrentValue)).setText(curValue);
     }
 }
