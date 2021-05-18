@@ -34,44 +34,32 @@
         android:layout_height="wrap_content"
         android:orientation="horizontal">
 
-        <Button
-            android:layout_width="0dp"
-            android:layout_height="100dp"
-            android:layout_margin="1dp"
-            android:layout_weight="1"
+        <com.google.android.material.button.MaterialButton
+            style="@style/OperationStyle"
             android:ellipsize="marquee"
             android:singleLine="true"
-            android:text="CE"
-            android:textSize="25sp"
+            android:text="@string/ce"
+            android:textSize="@dimen/buttonTextSize"
             android:id="@+id/btnCe"/>
 
-        <Button
-            android:layout_width="0dp"
-            android:layout_height="100dp"
-            android:layout_margin="1dp"
-            android:layout_weight="1"
-            android:text="C"
-            android:textSize="25sp"
+        <com.google.android.material.button.MaterialButton
+            style="@style/OperationStyle"
+            android:text="@string/c"
+            android:textSize="@dimen/buttonTextSize"
             android:id="@+id/btnC"/>
 
-        <Button
-            android:layout_width="0dp"
-            android:layout_height="100dp"
-            android:layout_margin="1dp"
-            android:layout_weight="1"
+        <com.google.android.material.button.MaterialButton
+            style="@style/OperationStyle"
             android:ellipsize="marquee"
-            android:text="DEL"
-            android:textSize="25sp"
+            android:text="@string/del"
+            android:textSize="@dimen/buttonTextSize"
             android:singleLine="true"
             android:id="@+id/btnDel"/>
 
-        <Button
-            android:layout_width="0dp"
-            android:layout_height="100dp"
-            android:layout_margin="1dp"
-            android:layout_weight="1"
-            android:text="/"
-            android:textSize="25sp"
+        <com.google.android.material.button.MaterialButton
+            style="@style/OperationStyle"
+            android:text="@string/split"
+            android:textSize="@dimen/buttonTextSize"
             android:id="@+id/btnSplit"/>
 
     </LinearLayout>
@@ -81,40 +69,28 @@
         android:layout_height="wrap_content"
         android:orientation="horizontal">
 
-        <Button
-            android:layout_width="0dp"
-            android:layout_height="100dp"
-            android:layout_margin="1dp"
-            android:layout_weight="1"
+        <com.google.android.material.button.MaterialButton
+            style="@style/NumberStyle"
             android:text="7"
-            android:textSize="25sp"
+            android:textSize="@dimen/buttonTextSize"
             android:id="@+id/btn7"/>
 
-        <Button
-            android:layout_width="0dp"
-            android:layout_height="100dp"
-            android:layout_margin="1dp"
-            android:layout_weight="1"
+        <com.google.android.material.button.MaterialButton
+            style="@style/NumberStyle"
             android:text="8"
-            android:textSize="25sp"
+            android:textSize="@dimen/buttonTextSize"
             android:id="@+id/btn8"/>
 
-        <Button
-            android:layout_width="0dp"
-            android:layout_height="100dp"
-            android:layout_margin="1dp"
-            android:layout_weight="1"
+        <com.google.android.material.button.MaterialButton
+            style="@style/NumberStyle"
             android:text="9"
-            android:textSize="25sp"
+            android:textSize="@dimen/buttonTextSize"
             android:id="@+id/btn9"/>
 
-        <Button
-            android:layout_width="0dp"
-            android:layout_height="100dp"
-            android:layout_margin="1dp"
-            android:layout_weight="1"
-            android:text="*"
-            android:textSize="25sp"
+        <com.google.android.material.button.MaterialButton
+            style="@style/OperationStyle"
+            android:text="@string/multiply"
+            android:textSize="@dimen/buttonTextSize"
             android:id="@+id/btnMultiply"/>
 
     </LinearLayout>
@@ -124,40 +100,28 @@
         android:layout_height="wrap_content"
         android:orientation="horizontal">
 
-        <Button
-            android:layout_width="0dp"
-            android:layout_height="100dp"
-            android:layout_margin="1dp"
-            android:layout_weight="1"
+        <com.google.android.material.button.MaterialButton
+            style="@style/NumberStyle"
             android:text="4"
-            android:textSize="25sp"
+            android:textSize="@dimen/buttonTextSize"
             android:id="@+id/btn4"/>
 
-        <Button
-            android:layout_width="0dp"
-            android:layout_height="100dp"
-            android:layout_margin="1dp"
-            android:layout_weight="1"
+        <com.google.android.material.button.MaterialButton
+            style="@style/NumberStyle"
             android:text="5"
-            android:textSize="25sp"
+            android:textSize="@dimen/buttonTextSize"
             android:id="@+id/btn5"/>
 
-        <Button
-            android:layout_width="0dp"
-            android:layout_height="100dp"
-            android:layout_margin="1dp"
-            android:layout_weight="1"
+        <com.google.android.material.button.MaterialButton
+            style="@style/NumberStyle"
             android:text="6"
-            android:textSize="25sp"
+            android:textSize="@dimen/buttonTextSize"
             android:id="@+id/btn6"/>
 
-        <Button
-            android:layout_width="0dp"
-            android:layout_height="100dp"
-            android:layout_margin="1dp"
-            android:layout_weight="1"
-            android:text="-"
-            android:textSize="25sp"
+        <com.google.android.material.button.MaterialButton
+            style="@style/OperationStyle"
+            android:text="@string/minus"
+            android:textSize="@dimen/buttonTextSize"
             android:id="@+id/btnMinus"/>
 
     </LinearLayout>
@@ -167,40 +131,28 @@
         android:layout_height="wrap_content"
         android:orientation="horizontal">
 
-        <Button
-            android:layout_width="0dp"
-            android:layout_height="100dp"
-            android:layout_margin="1dp"
-            android:layout_weight="1"
+        <com.google.android.material.button.MaterialButton
+            style="@style/NumberStyle"
             android:text="1"
-            android:textSize="25sp"
+            android:textSize="@dimen/buttonTextSize"
             android:id="@+id/btn1"/>
 
-        <Button
-            android:layout_width="0dp"
-            android:layout_height="100dp"
-            android:layout_margin="1dp"
-            android:layout_weight="1"
+        <com.google.android.material.button.MaterialButton
+            style="@style/NumberStyle"
             android:text="2"
-            android:textSize="25sp"
+            android:textSize="@dimen/buttonTextSize"
             android:id="@+id/btn2"/>
 
-        <Button
-            android:layout_width="0dp"
-            android:layout_height="100dp"
-            android:layout_margin="1dp"
-            android:layout_weight="1"
+        <com.google.android.material.button.MaterialButton
+            style="@style/NumberStyle"
             android:text="3"
-            android:textSize="25sp"
+            android:textSize="@dimen/buttonTextSize"
             android:id="@+id/btn3"/>
 
-        <Button
-            android:layout_width="0dp"
-            android:layout_height="100dp"
-            android:layout_margin="1dp"
-            android:layout_weight="1"
-            android:text="+"
-            android:textSize="25sp"
+        <com.google.android.material.button.MaterialButton
+            style="@style/OperationStyle"
+            android:text="@string/plus"
+            android:textSize="@dimen/buttonTextSize"
             android:id="@+id/btnPlus"/>
 
     </LinearLayout>
@@ -210,31 +162,23 @@
         android:layout_height="wrap_content"
         android:orientation="horizontal">
 
-        <Button
-            android:layout_width="0dp"
-            android:layout_height="100dp"
-            android:layout_margin="1dp"
+        <com.google.android.material.button.MaterialButton
+            style="@style/NumberStyle"
             android:layout_weight="2"
             android:text="0"
-            android:textSize="25sp"
+            android:textSize="@dimen/buttonTextSize"
             android:id="@+id/btn0"/>
 
-        <Button
-            android:layout_width="0dp"
-            android:layout_height="100dp"
-            android:layout_margin="1dp"
-            android:layout_weight="1"
-            android:text=","
-            android:textSize="25sp"
+        <com.google.android.material.button.MaterialButton
+            style="@style/OperationStyle"
+            android:text="@string/dot"
+            android:textSize="@dimen/buttonTextSize"
             android:id="@+id/btnDot"/>
 
-        <Button
-            android:layout_width="0dp"
-            android:layout_height="100dp"
-            android:layout_margin="1dp"
-            android:layout_weight="1"
-            android:text="="
-            android:textSize="25sp"
+        <com.google.android.material.button.MaterialButton
+            style="@style/OperationStyle"
+            android:text="@string/equally"
+            android:textSize="@dimen/buttonTextSize"
             android:id="@+id/btnEqually"/>
 
     </LinearLayout>

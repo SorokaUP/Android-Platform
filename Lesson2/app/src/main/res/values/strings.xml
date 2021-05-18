@@ -2,4 +2,14 @@
     <string name="app_name">SvsCalc</string>
     <integer name="btn_size">100</integer>
     <integer name="btn_size_large">200</integer>
+
+    <string name="plus">+</string>
+    <string name="minus">-</string>
+    <string name="split">/</string>
+    <string name="multiply">*</string>
+    <string name="equally">=</string>
+    <string name="dot">,</string>
+    <string name="del">DEL</string>
+    <string name="c">C</string>
+    <string name="ce">CE</string>
 </resources>
