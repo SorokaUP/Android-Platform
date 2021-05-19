@@ -12,21 +12,15 @@
     android:background="@drawable/background">
 
     <TextView
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
+        style="@style/ValuesStyle"
         android:text="0"
         android:textSize="20sp"
-        android:layout_gravity="right"
-        android:maxLines="1"
         android:id="@+id/lbHistory"/>
 
     <TextView
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
+        style="@style/ValuesStyle"
         android:text="0"
         android:textSize="45sp"
-        android:layout_gravity="right"
-        android:maxLines="1"
         android:id="@+id/lbCurrentValue"/>
 
     <LinearLayout
