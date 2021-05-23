@@ -12,4 +12,12 @@
     <string name="del">DEL</string>
     <string name="c">C</string>
     <string name="ce">CE</string>
+    <string name="themeSystem">Тема системы</string>
+    <string name="themeLight">Дневная тема</string>
+    <string name="themeNight">Ночная тема</string>
+    <string name="buttonSettings">Настройки</string>
+    <string name="menuName">Настройки</string>
+    <string name="menuAbout">О программе</string>
+    <string name="atMain">Калькулятор</string>
+    <string name="atSettings">Настройки</string>
 </resources>

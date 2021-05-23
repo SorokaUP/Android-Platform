@@ -3,22 +3,31 @@ package ru.sorokin.lesson2;
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 
+import android.app.Activity;
+import android.content.Intent;
+import android.content.SharedPreferences;
 import android.os.Bundle;
+import android.view.Menu;
+import android.view.MenuItem;
 import android.view.View;
 import android.widget.Button;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import java.util.ArrayList;
 import java.util.Dictionary;
 
-public class MainActivity extends AppCompatActivity {
+public class MainActivity extends AppThemeChooser {
 
-    private static final String DATA_PARAM = "CoreData";
+    public static final String DATA_PARAM = "CoreData";
+    public static final String APP_SETTINGS = "AppSettings";
     private Core data;
+    private final static int SETTINGS_REQUEST_CODE = 1;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+        setAppThemeX((savedInstanceState != null) ? savedInstanceState.getInt(APP_THEME) : THEME_DEFAULT);
         setContentView(R.layout.activity_main);
 
         buttonSetOnClick(R.id.btn0);
@@ -41,7 +50,50 @@ public class MainActivity extends AppCompatActivity {
         buttonSetOnClick(R.id.btnMultiply);
         buttonSetOnClick(R.id.btnEqually);
 
-        data = (savedInstanceState != null) ? (Core)savedInstanceState.getSerializable(DATA_PARAM) : new Core();
+        data = (savedInstanceState != null) ? (Core) savedInstanceState.getSerializable(DATA_PARAM) : new Core();
+    }
+
+    @Override
+    public boolean onCreateOptionsMenu(Menu menu) {
+        getMenuInflater().inflate(R.menu.menu_activity_main, menu);
+        return true;
+    }
+
+    @Override
+    public boolean onOptionsItemSelected(@NonNull MenuItem item) {
+        switch (item.getItemId())
+        {
+            case R.id.menuSettings:
+                Intent intent = new Intent(this, SettingsActivity.class);
+                intent.putExtra(APP_THEME, currentThemeId);
+                startActivityForResult(intent, SETTINGS_REQUEST_CODE );
+                break;
+
+            case R.id.menuThemeLight:
+                setAppThemeX(AppThemeChooser.THEME_LIGHT);
+                break;
+
+            case R.id.menuThemeNight:
+                setAppThemeX(AppThemeChooser.THEME_NIGHT);
+                break;
+        }
+
+        return super.onOptionsItemSelected(item);
+    }
+
+    @Override
+    protected void onActivityResult(int requestCode, int resultCode, Intent data) {
+        if (requestCode != SETTINGS_REQUEST_CODE) {
+            super.onActivityResult(requestCode, resultCode, data);
+            return;
+        }
+        if (resultCode == Activity.RESULT_OK) {
+            if (data != null) {
+                Bundle extras = data.getExtras();
+                currentThemeId = extras.getInt(APP_THEME);
+                recreate();
+            }
+        }
     }
 
     private void buttonSetOnClick(int id) {
@@ -102,6 +154,7 @@ public class MainActivity extends AppCompatActivity {
     protected void onSaveInstanceState(@NonNull Bundle outState) {
         super.onSaveInstanceState(outState);
         outState.putSerializable(DATA_PARAM, data);
+        outState.putSerializable(APP_THEME, currentThemeId);
     }
 
     @Override
