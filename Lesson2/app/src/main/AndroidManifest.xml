@@ -8,14 +8,20 @@
         android:label="@string/app_name"
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
-        android:theme="@style/Theme.Lesson2">
-        <activity android:name=".MainActivity" >
+        android:theme="@style/AppTheme">
+        <activity android:name=".MainActivity" android:label="@string/atMain">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
+            <intent-filter>
+                <action android:name="android.intent.action.MAIN" />
+
+                <category android:name="android.intent.category.CATEGORY_APP_CALCULATOR" />
+            </intent-filter>
         </activity>
+        <activity android:name=".SettingsActivity" android:label="@string/atSettings" android:parentActivityName=".MainActivity"/>
     </application>
 
 </manifest>
