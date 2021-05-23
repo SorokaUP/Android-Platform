@@ -16,7 +16,7 @@ public class SettingsActivity extends AppThemeChooser {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setAppThemeX((savedInstanceState != null) ? savedInstanceState.getInt(APP_THEME) : THEME_DEFAULT);
+        setAppThemeX((savedInstanceState != null) ? savedInstanceState.getInt(APP_THEME) : currentThemeId);
         setContentView(R.layout.activity_settings);
 
         initRadioGroup();

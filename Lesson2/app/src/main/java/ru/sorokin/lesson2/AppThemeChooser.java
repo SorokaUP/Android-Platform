@@ -15,7 +15,7 @@ public class AppThemeChooser extends AppCompatActivity {
     public static final int THEME_LIGHT = 1;
     public static final int THEME_NIGHT = 2;
 
-    public static int currentThemeId = 0;
+    public static int currentThemeId = THEME_DEFAULT;
 
 
     // themeX = int THEME_
